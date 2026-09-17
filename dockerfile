@@ -1,6 +1,6 @@
 
 # Use the official Bitnami 8.5.1 image as the starting base
-FROM docker.io/bitnami/elasticsearch:8.5.1
+FROM docker.elastic.co/elasticsearch/elasticsearch:8.5.1
 
 # Temporarily switch to root to install packages if needed (or run system updates)
 USER root
