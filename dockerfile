@@ -1,10 +1,13 @@
+# Use the correct, existing Bitnami 8.5.1 tag
+FROM docker.io/bitnami/elasticsearch:8.5.1
 
-# Use the official Bitnami 8.5.1 image as the starting base
-FROM docker.elastic.co/elasticsearch/elasticsearch:8.5.1
-
-# Temporarily switch to root to install packages if needed (or run system updates)
+# Temporarily switch to root to install packages
 USER root
-RUN install_packages ca-certificates curl
+
+# Run apt-get update and install ca-certificates and curl securely, cleaning up caches afterward
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates curl && \
+    rm -rf /var/lib/apt/lists/*
 
 # Switch back to the standard non-root Bitnami user (UID 1001) for security compliance
 USER 1001
