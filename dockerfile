@@ -1,5 +1,5 @@
 # Use the correct, existing Bitnami 8.5.1 tag
-FROM docker.io/bitnami/elasticsearch:8.5.3
+FROM docker.elastic.co/elasticsearch/elasticsearch:8.5.1
 
 # Temporarily switch to root to install packages
 USER root
