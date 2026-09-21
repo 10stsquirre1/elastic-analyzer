@@ -1,16 +1,6 @@
-# Use the correct, existing Bitnami 8.5.1 tag
-FROM docker.elastic.co/elasticsearch/elasticsearch:8.18.8
+# Use the official Elasticsearch 9.5.3 image as the base
+FROM docker.elastic.co/elasticsearch/elasticsearch:9.5.3
 
-# Temporarily switch to root to install packages
-USER root
-
-# Run apt-get update and install ca-certificates and curl securely, cleaning up caches afterward
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates curl && \
-    rm -rf /var/lib/apt/lists/*
-
-# Switch back to the standard non-root Bitnami user (UID 1001) for security compliance
-USER 1001
-
-# Install the analysis-icu plugin directly into the image filesystem
-RUN /opt/bitnami/elasticsearch/bin/elasticsearch-plugin install --batch analysis-icu
+# Install the matching 9.5.3 ICU analysis plugin
+# The --batch flag automatically accepts default security permissions
+RUN bin/elasticsearch-plugin install --batch analysis-icu
